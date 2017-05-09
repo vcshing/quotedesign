@@ -70,7 +70,7 @@ myApp.onPageInit('quotelist', function(page) {
                             cardHtml += "";
                             cardHtml += "				  <\/div>";
                             cardHtml += "				  <div class=\"card-footer\">";
-                            cardHtml += "					<a href=\"#\" class=\"publishQuoteListLike\"  data-id=\"" + response.result[i].master_id + "\" >Like (" + response.result[i].likecount + ")<\/a>";
+                            cardHtml += "					<a href=\"#\" class=\"publishQuoteListLike\"  data-id=\"" + response.result[i].master_id + "\" >Like (" + "<span>" + response.result[i].likecount + "</span>" + ")<\/a>";
                             cardHtml += "		<a href=\"#\" class=\"publishQuoteListShare\"  data-path=\"" + response.result[i].path + "\" >Share<\/a>";
                             cardHtml += "		<a href=\"#\" class=\"publishQuoteListDownload\"  data-path=\"" + response.result[i].path + "\" >Download<\/a>";
                             cardHtml += "				  <\/div>";
@@ -86,32 +86,46 @@ myApp.onPageInit('quotelist', function(page) {
                     page++;
 
                     $(".publishQuoteListLike").bind("click", function(e) {
+                        //debugger;
+
+
+                        var self = $(this);
+                         
+
                         if (getCookie("like", $(this).attr("data-id"), "0") != "1") {
                             $.ajax({
                                 type: 'POST',
                                 url: 'http://gogogo.synology.me/api/genword/addlike.php',
                                 data: {
-                                    "masterid": $(this).attr("data-id"),
+                                    "masterid": self.attr("data-id"),
                                 },
                                 dataType: 'JSON',
                                 success: function(response) {
                                     if (response.status == 1) {
-                                        setCookieIndex("like", $(this).attr("data-id"), "1");
+                                        setCookieIndex("like", self.attr("data-id"), "1");
+                                        self.find("span").html(parseInt(self.find("span").html()) + 1);
+                                        if (typeof(window.plugins) != "undefined") {
+                                            window.plugins.toast.showShortTop('Liked', function(a) {}, function(b) {})
+                                        }
                                     }
                                 }
                             });
+                        } else {
+                            if (typeof(window.plugins) != "undefined") {
+                                window.plugins.toast.showShortTop('You already Liked', function(a) {}, function(b) {})
+                            }
+
                         }
                     });
 
                     $(".publishQuoteListShare").bind("click", function(e) {
-                        window.plugins.socialsharing.share(" ", " ", $(this).attr("data-path"), "https://play.google.com/store/apps/details?id=com.skyexplorer.quotedesign");
+                        window.plugins.socialsharing.share(" ", " ", $(this).attr("data-path"), "");
                     });
 
                     var enableDownload = 1;
                     $(".publishQuoteListDownload").bind("click", function(e) {
                         if (enableDownload == 1) {
                             enableDownload = 0;
-debugger;
                             imgurl = $(this).attr("data-path");
                             //DownloadFile(imgurl, "Cosplay", MD5(imgurl)) ;
 

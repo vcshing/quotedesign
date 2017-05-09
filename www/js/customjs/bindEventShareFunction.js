@@ -149,6 +149,6 @@ $(".designFormDownload").bind("click", function() {
 
 $(".designFormShare").bind("click", function(e) {
     if ($(".designImage").attr("data-id") != undefined) {
-        window.plugins.socialsharing.share(" ", " ", $(".designImage").attr("src") , "https://play.google.com/store/apps/details?id=com.skyexplorer.quotedesign");
+        window.plugins.socialsharing.share(" ", " ", $(".designImage").attr("src") , " ");
     }
 });

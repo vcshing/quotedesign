@@ -1,5 +1,5 @@
 // Initialize app
-var myApp = new Framework7({
+var myApp = new Framework7({"modalTitle":"^_^"
     /*preprocess: function (content, url, next) {
       alert(url);
         if (url === 'people.html') {

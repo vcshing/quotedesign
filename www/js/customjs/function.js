@@ -124,6 +124,7 @@ function setCookie(index, array) {
 }
 
 function setCookieIndex(index, contentIndex, content) {
+   
     var contentIndex=String(contentIndex);
    var cookieArray = getCookie(index, "", [])
    if(contentIndex==""){
@@ -131,6 +132,7 @@ function setCookieIndex(index, contentIndex, content) {
    }else{
      cookieArray[contentIndex]= content;
    }
+
     storageManager.setCookie(index , cookieArray)
 }
 
