@@ -70,6 +70,6 @@
 	<plugin name="cordova-plugin-x-socialsharing" />
 	<plugin name="cordova-plugin-network-information" />
 	<plugin name="cordova-plugin-device" />
-	
+	 <plugin name="https://github.com/devgeeks/Canvas2ImagePlugin.git" source="npm" />
 
 </widget>
