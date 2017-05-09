@@ -16,14 +16,26 @@
     </div>
 </div>
 <div class="pages">
-    <div data-page="intro" class="page">
-        <div class="page-content">
-            <div class="content-block-title introword"> </div>
-            <div class="content-block">
-                <div class="content-block-inner introword"> </div>
+<style>
+.infinite-scroll-preloader {
+  margin-top:-20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.infinite-scroll-preloader .preloader {
+  width:34px;
+  height:34px;
+}        
+</style>
+    <div data-page="quotelist" class="page">
+        <div class="page-content infinite-scroll">
+            <div class="content-block loopCardContent">
+
             </div>
-
-
+		  <!-- Preloader -->
+		  <div class="infinite-scroll-preloader" >
+			<div class="preloader" style="display: block;margin-left: auto;margin-right: auto"  ></div>
+		  </div>
         </div>
     </div>
 </div>

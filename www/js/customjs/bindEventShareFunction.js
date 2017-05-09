@@ -40,7 +40,7 @@ $('.startTutorials').on('click', function (e) {
 });
 
 $(".shareApp").bind("click",function(e){
-  window.plugins.socialsharing.share("Keep Fit - TABATA", "Good Apps", "", "https://play.google.com/store/apps/details?id=com.skyexplorer.keepfit");
+  window.plugins.socialsharing.share("Quote Designer", "Good Apps", "", "https://play.google.com/store/apps/details?id=com.skyexplorer.quotedesign");
 })
 
 $(".langen").bind("click", function() {
@@ -78,12 +78,13 @@ formData['userid'] = '';
 
  $.ajax({
   type: 'POST',
-  url: 'http://gogogo.synology.me/api/genword/index.php',
+  url: 'http://gogogo.synology.me/api/genword/genImg.php',
   data: formData,
   dataType: 'JSON',
   success: function(response){
 	  if(response.status==1){
-		  $(".designImage").attr("src",response.response)
+		  $(".designImage").attr("src",response.domainPath)
+		  $(".designImage").attr("data-id",response.insertId)
 	  }else{
 		  alert("Server Error, Please Try Again Later");
 	  }
@@ -92,4 +93,21 @@ formData['userid'] = '';
 		alert("Server Error, Please Try Again Later");
 	}
 });
+})
+
+
+$(".designFormPublish").bind("click",function(){
+	if($(".designImage").attr("data-id") != undefined){
+		 $.ajax({
+		  type: 'POST',
+		  url: 'http://gogogo.synology.me/api/genword/publish.php',
+		  data: {"masterid":$(".designImage").attr("data-id")},
+		  dataType: 'JSON',
+		  success: function(response){
+			  if(response.status==1){
+				myApp.alert("Publish Success");
+				}
+			}
+		 })
+	}
 })
