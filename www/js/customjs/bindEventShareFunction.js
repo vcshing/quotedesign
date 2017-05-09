@@ -62,3 +62,34 @@ $(".langDefault").bind("click", function() {
   storageManager.setCookie("lang",{"selectedLang": lang});
   pageInit();
 })
+
+
+$$('.designFormSubmit').on('click', function(){
+
+var formData = myApp.formToJSON('#designFormSubmit');
+formData['locale'] = lang;
+if(typeof(device)=="undefined"){
+	formData['deviceid'] = "";
+}else{
+	formData['deviceid'] = device.uuid;
+}
+
+formData['userid'] = '';
+
+ $.ajax({
+  type: 'POST',
+  url: 'http://gogogo.synology.me/api/genword/index.php',
+  data: formData,
+  dataType: 'JSON',
+  success: function(response){
+	  if(response.status==1){
+		  $(".designImage").attr("src",response.response)
+	  }else{
+		  alert("Server Error, Please Try Again Later");
+	  }
+  },
+	error: function(response) {
+		alert("Server Error, Please Try Again Later");
+	}
+});
+})

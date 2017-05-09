@@ -34,10 +34,9 @@
 
     <link rel="stylesheet" href="css/styles.css">
 
-    <script type="text/javascript" src="js/jquery.js"></script>
+
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/moment.js"></script>
-    <script type="text/javascript" src="js/function.js"></script>
     <script type="text/javascript" src="js/local_storage_manager.js"></script>
     <script language="javascript" src="js/GB2312TOBIG5.js"></script>
     <script language="javascript" src="js/GBCodeUnicode.js"></script>
@@ -107,15 +106,15 @@
 
  
 <div class="card-content">
-<img src="image/1.jpg" width="100%">
+<img class="designImage" src="image/1.jpg" width="100%">
 </div>
  
 
 </div>      
-						<div class="content-block-title">Details</div>
+						<div class="content-block-title word">Details</div>
 						
 						
-						
+		<form id="designFormSubmit" class="list-block">				
 <div class="list-block">
   <ul>
     <!-- Text inputs -->
@@ -124,7 +123,7 @@
         <div class="item-inner">
           <div class="item-title label">Name</div>
           <div class="item-input">
-            <input type="text" placeholder="Your name">
+            <input name="nameText" type="text" placeholder="Your name">
           </div>
         </div>
       </div>
@@ -134,14 +133,44 @@
         <div class="item-inner">
           <div class="item-title label">Contents</div>
           <div class="item-input">
-            <input type="email" placeholder="Contents">
+            <textarea  name="contentText" placeholder="Contents" rows="14"></textarea>
           </div>
         </div>
       </div>
     </li>
- 
- 		
+	
+	 <li>
+      <div class="item-content">
+        <div class="item-inner">
+          <div class="item-title label">Font Size</div>
+          <div class="item-input">
+            <select name="formSize">
+              <option value="70" class="word"> </option>
+              <option value="50" class="word"> </option>
+			  <option value="30" class="word"> </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </li>
+
+ </form>		
+
                         </div>
+						
+<p class="buttons-row">
+  <a href="#" class="button designFormSubmit">Submit</a>
+</p>
+
+<p class="buttons-row">
+  <a href="#" class="button designFormPublish">Publish</a>
+  <a href="#" class="button designFormDownload">Download</a>
+  <a href="#" class="button designFormShare">Share</a>
+</p>
+  
+<p class="buttons-row">
+  <a href="#" class="button viewPublishedDesign">View Others Design</a>
+</p>
 
 
 
@@ -177,6 +206,7 @@
 
 
     <script>
+
         var lang
         var defaultLangArr = []
         var loopLangArr = []
@@ -187,9 +217,9 @@
         defaultLangArr.push("我想說");
         defaultLangArr.push("預設語言");
         defaultLangArr.push("介紹");
-
-
-
+defaultLangArr.push("大");
+defaultLangArr.push("中");
+defaultLangArr.push("小");
         $(function() {
             lang = getCookie("lang", "selectedLang", checkLang());
             //lang = ""
