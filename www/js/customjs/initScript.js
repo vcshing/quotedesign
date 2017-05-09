@@ -90,7 +90,7 @@ myApp.onPageInit('quotelist', function(page) {
 
 
                         var self = $(this);
-                         
+
 
                         if (getCookie("like", $(this).attr("data-id"), "0") != "1") {
                             $.ajax({
@@ -105,14 +105,14 @@ myApp.onPageInit('quotelist', function(page) {
                                         setCookieIndex("like", self.attr("data-id"), "1");
                                         self.find("span").html(parseInt(self.find("span").html()) + 1);
                                         if (typeof(window.plugins) != "undefined") {
-                                            window.plugins.toast.showShortTop('Liked', function(a) {}, function(b) {})
+                                            window.plugins.toast.showLongBottom('Liked', function(a) {}, function(b) {})
                                         }
                                     }
                                 }
                             });
                         } else {
                             if (typeof(window.plugins) != "undefined") {
-                                window.plugins.toast.showShortTop('You already Liked', function(a) {}, function(b) {})
+                                window.plugins.toast.showLongBottom('You already Liked', function(a) {}, function(b) {})
                             }
 
                         }
