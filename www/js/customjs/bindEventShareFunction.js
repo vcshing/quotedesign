@@ -111,3 +111,30 @@ $(".designFormPublish").bind("click",function(){
 		 })
 	}
 })
+
+var enableDownload = 1;
+$(".designFormDownload").bind("click",function(){
+	
+	if($(".designImage").attr("data-id") != undefined){
+		
+		if(enableDownload == 1){
+			enableDownload =0;
+			
+			imgurl=$(".designImage").attr("src");
+			//DownloadFile(imgurl, "Cosplay", MD5(imgurl)) ;
+			
+			var success = function(msg){
+				myApp.alert("Saved to gallery");
+				enableDownload =1;
+			};
+
+			var error = function(err){
+				alert("Fail to Save");
+				enableDownload =1;
+			};
+
+			saveImageToPhone(encodeURI(imgurl), success, error);
+
+		}
+	}
+})
