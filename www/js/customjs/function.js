@@ -261,10 +261,10 @@ function getHomePageListRank(listType) {
 }
 
 
-   
+
    function saveImageToPhone(url, success, error) {
 
-		
+
 			var canvas, context, imageDataUrl, imageData;
 			var img = new Image();
 			img.onload = function() {
@@ -294,5 +294,11 @@ function getHomePageListRank(listType) {
 			catch(e) {
 				error(e.message);
 			}
-		
+
 	}
+
+  function randomEvent(pool,callback){
+    if(Math.floor(Math.random() * pool) + 1 == 1 ){
+      callback();
+    }
+  }

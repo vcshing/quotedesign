@@ -55,7 +55,7 @@ $$(document).on('deviceready', function() {
   admob.createBannerView();
 
   // Request interstitial (will present automatically when autoShowInterstitial is set to true)
-  //admob.requestInterstitialAd();
+  randomEvent(20,admob.requestInterstitialAd());
 
 	//navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
 });
@@ -70,7 +70,7 @@ myApp.onPageInit('about', function (page) {
 })
 myApp.onPageInit('twelveConstellationsDetail', function (page) {
     // Do something here for "about" page
-    alert(11);
+
 
 })
 // Option 2. Using one 'pageInit' event handler for all pages:
