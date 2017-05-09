@@ -121,9 +121,9 @@
     <li>
       <div class="item-content">
         <div class="item-inner">
-          <div class="item-title label">Name</div>
+          <div class="item-title label word">Name</div>
           <div class="item-input">
-            <input name="nameText" type="text" placeholder="Your name">
+            <input class="word" name="nameText" type="text" placeholder="Your name">
           </div>
         </div>
       </div>
@@ -131,9 +131,9 @@
     <li>
       <div class="item-content">
         <div class="item-inner">
-          <div class="item-title label">Contents</div>
+          <div class="item-title label word">Contents</div>
           <div class="item-input">
-            <textarea  name="contentText" placeholder="Contents" rows="14"></textarea>
+            <textarea class="word" name="contentText" placeholder="Contents" rows="14"></textarea>
           </div>
         </div>
       </div>
@@ -142,7 +142,7 @@
 	 <li>
       <div class="item-content">
         <div class="item-inner">
-          <div class="item-title label">Font Size</div>
+          <div class="item-title label word">Font Size</div>
           <div class="item-input">
             <select name="formSize">
               <option value="70" class="word"> </option>
@@ -159,17 +159,17 @@
                         </div>
 						
 <p class="buttons-row">
-  <a href="#" class="button designFormSubmit">Submit</a>
+  <a href="#" class="button designFormSubmit word">Submit</a>
 </p>
 
 <p class="buttons-row">
-  <a href="#" class="button designFormPublish">Publish To Public</a>
-  <a href="#" class="button designFormDownload">Download</a>
-  <a href="#" class="button designFormShare">Share</a>
+  <a href="#" class="button designFormPublish word">Publish To Public</a>
+  <a href="#" class="button designFormDownload word">Download</a>
+  <a href="#" class="button designFormShare word">Share</a>
 </p>
   
 <p class="buttons-row">
-  <a href="quotelist.html" class="button viewPublishedDesign">View Others Design</a>
+  <a href="quotelist.html" class="button viewPublishedDesign word">View Others Design</a>
 </p>
 
 
@@ -217,9 +217,21 @@
         defaultLangArr.push("我想說");
         defaultLangArr.push("預設語言");
         defaultLangArr.push("介紹");
-defaultLangArr.push("大");
-defaultLangArr.push("中");
-defaultLangArr.push("小");
+		defaultLangArr.push("名稱");
+		defaultLangArr.push("名稱");
+		defaultLangArr.push("內容");
+		defaultLangArr.push("內容");
+			defaultLangArr.push("字型大小");
+			
+		defaultLangArr.push("大型");
+		defaultLangArr.push("中型");
+		defaultLangArr.push("小型");
+		
+			defaultLangArr.push("發送");
+			defaultLangArr.push("公眾分享");
+			defaultLangArr.push("下載");
+			defaultLangArr.push("朋友分享");
+			defaultLangArr.push("其他人作品");
         $(function() {
             lang = getCookie("lang", "selectedLang", checkLang());
             //lang = ""

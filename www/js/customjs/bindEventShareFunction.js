@@ -86,11 +86,11 @@ formData['userid'] = '';
 		  $(".designImage").attr("src",response.domainPath)
 		  $(".designImage").attr("data-id",response.insertId)
 	  }else{
-		  alert("Server Error, Please Try Again Later");
+		  alert("Server Error, Please Try Again Later1");
 	  }
   },
 	error: function(response) {
-		alert("Server Error, Please Try Again Later");
+		alert("Please Enter Value");
 	}
 });
 })
