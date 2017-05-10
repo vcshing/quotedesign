@@ -124,7 +124,7 @@ function setCookie(index, array) {
 }
 
 function setCookieIndex(index, contentIndex, content) {
-   
+   debugger;
     var contentIndex=String(contentIndex);
    var cookieArray = getCookie(index, "", [])
    if(contentIndex==""){
@@ -143,12 +143,13 @@ function frontEndTranslateToSelectedLang(defaultLangArr, callback) {
       defaultLangArrToWord = defaultLangArr;
     }else{
       $.each(defaultLangArr, function(a, b) {
-          defaultLangArrToWord += ("☾ " + b + " ☽");
+          defaultLangArrToWord += ("" + b + "✰");
       })
     }
+    //lang="ru";
     var translatedLangArr = [];
     translate(defaultLangArrToWord, lang, function(translatedText) {
-        translatedText = translatedText.match(/[^[\☾\☽]+/gm);
+        translatedText = translatedText.match(/[^[\✰]+/gm);
 
         $.each(translatedText, function(a, b) {
             if (b != "" && b != " ") {
@@ -187,13 +188,14 @@ function translate(keyword, lang, callback) {
     }
     $.ajax({
         type: "post",
-        url: "http://gogogo.synology.me/googletranslate/translate.php",
+        url: "http://gogogo.synology.me/googletranslate/translateArr.php",
         data: {
             "keyword": keyword,
             "lang": lang
         },
         dataType: "json",
         success: function(response) {
+        //  debugger;
             var translatedText = response["data"]["translations"][0]["translatedText"]
             var JsonTranslatedText = translatedText;
             callback(JsonTranslatedText);
