@@ -6,11 +6,6 @@ $(".otherApp").bind("click", function(e) {
     window.open(url, target, options);
 })
 
-$(".shareApp").bind("click", function(e) {
-    window.plugins.socialsharing.share("Good Game", "Good Game", "", "https://play.google.com/store/apps/details?id=com.skyexplorer.tellyou");
-})
-
-
 $(".goodlist").bind("click", function(e) {
     $(".badlist").removeClass("active");
     $(".goodlist").addClass("active");
@@ -81,7 +76,7 @@ $$('.designFormSubmit').on('click', function() {
     }
 
     formData['userid'] = '';
-
+    myApp.showPreloader();
     $.ajax({
         type: 'POST',
         url: 'http://gogogo.synology.me/api/genword/genImg.php',
@@ -89,14 +84,18 @@ $$('.designFormSubmit').on('click', function() {
         dataType: 'JSON',
         success: function(response) {
             if (response.status == 1) {
-                $(".designImage").attr("src", response.domainPath)
-                $(".designImage").attr("data-id", response.insertId)
+                myApp.hidePreloader();
+                $(".designImage").attr("src", response.domainPath);
+                $(".designImage").attr("data-id", response.insertId);
+
             } else {
-                alert("Server Error, Please Try Again Later1");
+                myApp.hidePreloader();
+                myApp.alert("Server Error, Please Try Again Later");
             }
         },
         error: function(response) {
-            alert("Please Enter Value");
+            myApp.hidePreloader();
+            myApp.alert("Please Enter Value");
         }
     });
 })
