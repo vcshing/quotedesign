@@ -61,7 +61,7 @@ myApp.onPageInit('quotelist', function(page) {
                         $$('.infinite-scroll-preloader').remove();
                         return;
                     } else {
-
+                        var cardHtml = "";
                         for (var i = 0; i < response.result.length; i++) {
                             cardHtml += "			<div class=\"card\">";
                             cardHtml += "				  <div class=\"card-content\">";
