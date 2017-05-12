@@ -104,47 +104,47 @@ function setLang() {
 }
 
 function getCookie(index, contentIndex, defaultValue) {
-    var contentIndex=String(contentIndex);
+    var contentIndex = String(contentIndex);
     var cookie = storageManager.getCookie(index);
     if (cookie == "" || cookie == null) {
         return defaultValue;
-    } else if (contentIndex==""){
-      return cookie;
-    }else{
-      if(cookie[contentIndex] == undefined){
-          return defaultValue;
-      }else{
-          return cookie[contentIndex];
-      }
+    } else if (contentIndex == "") {
+        return cookie;
+    } else {
+        if (cookie[contentIndex] == undefined) {
+            return defaultValue;
+        } else {
+            return cookie[contentIndex];
+        }
     }
 }
 
 function setCookie(index, array) {
-    storageManager.setCookie(index , array)
+    storageManager.setCookie(index, array)
 }
 
 function setCookieIndex(index, contentIndex, content) {
-   debugger;
-    var contentIndex=String(contentIndex);
-   var cookieArray = getCookie(index, "", [])
-   if(contentIndex==""){
-     cookieArray[cookieArray.length]= content;
-   }else{
-     cookieArray[contentIndex]= content;
-   }
+    debugger;
+    var contentIndex = String(contentIndex);
+    var cookieArray = getCookie(index, "", [])
+    if (contentIndex == "") {
+        cookieArray[cookieArray.length] = content;
+    } else {
+        cookieArray[contentIndex] = content;
+    }
 
-    storageManager.setCookie(index , cookieArray)
+    storageManager.setCookie(index, cookieArray)
 }
 
 
 function frontEndTranslateToSelectedLang(defaultLangArr, callback) {
     var defaultLangArrToWord = "";
-    if(typeof(defaultLangArr)=="string"){
-      defaultLangArrToWord = defaultLangArr;
-    }else{
-      $.each(defaultLangArr, function(a, b) {
-          defaultLangArrToWord += ("" + b + "✰");
-      })
+    if (typeof(defaultLangArr) == "string") {
+        defaultLangArrToWord = defaultLangArr;
+    } else {
+        $.each(defaultLangArr, function(a, b) {
+            defaultLangArrToWord += ("" + b + "✰");
+        })
     }
     //lang="ru";
     var translatedLangArr = [];
@@ -163,8 +163,8 @@ function frontEndTranslateToSelectedLang(defaultLangArr, callback) {
     })
 }
 
-function assignWordClassTranslation(translatedLangArr,containClass) {
-    $("."+containClass).each(function(a, b) {
+function assignWordClassTranslation(translatedLangArr, containClass) {
+    $("." + containClass).each(function(a, b) {
 
         if ($(this).html() != "" && $(this).html() != "undefined") {
             $(this).html(translatedLangArr[a]);
@@ -195,7 +195,7 @@ function translate(keyword, lang, callback) {
         },
         dataType: "json",
         success: function(response) {
-        //  debugger;
+            //  debugger;
             var translatedText = response["data"]["translations"][0]["translatedText"]
             var JsonTranslatedText = translatedText;
             callback(JsonTranslatedText);
@@ -208,12 +208,12 @@ function translate(keyword, lang, callback) {
     });
 }
 
-function sec2str(t){
-    var d = Math.floor(t/86400),
-        h = ('0'+Math.floor(t/3600) % 24).slice(-2),
-        m = ('0'+Math.floor(t/60)%60).slice(-2),
+function sec2str(t) {
+    var d = Math.floor(t / 86400),
+        h = ('0' + Math.floor(t / 3600) % 24).slice(-2),
+        m = ('0' + Math.floor(t / 60) % 60).slice(-2),
         s = ('0' + t % 60).slice(-2);
-    return (d>0?d+'Day ':'')+(h>0?h+':':'')+(m>0?m+':':'')+(t>60?s:s+'Sec');
+    return (d > 0 ? d + 'Day ' : '') + (h > 0 ? h + ':' : '') + (m > 0 ? m + ':' : '') + (t > 60 ? s : s + 'Sec');
 }
 
 function getHomePageListRank(listType) {
@@ -266,43 +266,51 @@ function getHomePageListRank(listType) {
 
 
 
-   function saveImageToPhone(url, success, error) {
+function saveImageToPhone(url, success, error) {
 
 
-			var canvas, context, imageDataUrl, imageData;
-			var img = new Image();
-			img.onload = function() {
-				canvas = document.createElement('canvas');
-				canvas.width = img.width;
-				canvas.height = img.height;
-				context = canvas.getContext('2d');
-				context.drawImage(img, 0, 0);
-				try {
-					imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
-					imageData = imageDataUrl.replace(/data:image\/jpeg;base64,/, '');
-					cordova.exec(
-						success,
-						error,
-						'Canvas2ImagePlugin',
-						'saveImageDataToLibrary',
-						[imageData]
-					);
-				}
-				catch(e) {
-					error(e.message);
-				}
-			};
-			try {
-				img.src = url;
-			}
-			catch(e) {
-				error(e.message);
-			}
-
-	}
-
-  function randomEvent(pool,callback){
-    if(Math.floor(Math.random() * pool) + 1 == 1 ){
-      callback();
+    var canvas, context, imageDataUrl, imageData;
+    var img = new Image();
+    img.onload = function() {
+        canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        context = canvas.getContext('2d');
+        context.drawImage(img, 0, 0);
+        try {
+            imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
+            imageData = imageDataUrl.replace(/data:image\/jpeg;base64,/, '');
+            cordova.exec(
+                success,
+                error,
+                'Canvas2ImagePlugin',
+                'saveImageDataToLibrary', [imageData]
+            );
+        } catch (e) {
+            error(e.message);
+        }
+    };
+    try {
+        img.src = url;
+    } catch (e) {
+        error(e.message);
     }
-  }
+
+}
+
+function randomEvent(pool, callback) {
+    if (Math.floor(Math.random() * pool) + 1 == 1) {
+        callback();
+    }
+}
+
+function saveImageAsJpg(name, address) {
+    var link = document.createElement('a');
+    link.style = 'position: fixed; left -10000px;'; // making it invisible
+    link.href = 'data:application/octet-stream,' + encodeURIComponent(address); // forcing content type
+    link.download = name.indexOf('.jpg') < 0 ? name + '.jpg' : name;
+    /* file extension is very important! */
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}

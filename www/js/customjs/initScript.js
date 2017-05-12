@@ -124,6 +124,7 @@ myApp.onPageInit('quotelist', function(page) {
 
                     var enableDownload = 1;
                     $(".publishQuoteListDownload").bind("click", function(e) {
+
                         if (enableDownload == 1) {
                             enableDownload = 0;
                             imgurl = $(this).attr("data-path");
@@ -141,8 +142,8 @@ myApp.onPageInit('quotelist', function(page) {
 
                             saveImageToPhone(encodeURI(imgurl), success, error);
 
-                        }
 
+                        }
                     });
 
 

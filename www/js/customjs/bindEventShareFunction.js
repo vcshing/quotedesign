@@ -35,8 +35,17 @@ $('.startTutorials').on('click', function(e) {
 });
 
 $(".shareApp").bind("click", function(e) {
-    window.plugins.socialsharing.share("Quote Designer", "Good Apps", "", "https://play.google.com/store/apps/details?id=com.skyexplorer.quotedesign");
+    window.plugins.socialsharing.share("Free Talk", "Good Apps", "", "https://play.google.com/store/apps/details?id=com.skyexplorer.quotedesign");
 })
+
+$(".linkFaceBook").bind("click", function(e) {
+    e.preventDefault();
+    var target = "_system";
+    var options = "location=yes";
+    var url = "https://www.facebook.com/Free-Talk-432150693808824/";
+    window.open(url, target, options);
+})
+
 
 $(".langen").bind("click", function() {
     lang = "en";
@@ -103,6 +112,7 @@ $$('.designFormSubmit').on('click', function() {
 
 $(".designFormPublish").bind("click", function() {
     if ($(".designImage").attr("data-id") != undefined) {
+      myApp.showPreloader();
         $.ajax({
             type: 'POST',
             url: 'http://gogogo.synology.me/api/genword/publish.php',
@@ -111,9 +121,16 @@ $(".designFormPublish").bind("click", function() {
             },
             dataType: 'JSON',
             success: function(response) {
+              myApp.hidePreloader();
                 if (response.status == 1) {
                     myApp.alert("Publish Success");
+                }else{
+                  myApp.alert("Publish Fail");
                 }
+            },
+            error: function(response) {
+                myApp.hidePreloader();
+                      myApp.alert("Publish Fail");
             }
         })
     }
@@ -143,11 +160,13 @@ $(".designFormDownload").bind("click", function() {
             saveImageToPhone(encodeURI(imgurl), success, error);
 
         }
+
+
     }
 })
 
 $(".designFormShare").bind("click", function(e) {
     if ($(".designImage").attr("data-id") != undefined) {
-        window.plugins.socialsharing.share(" ", " ", $(".designImage").attr("src") , " ");
+        window.plugins.socialsharing.share(" ", " ", $(".designImage").attr("src"), " ");
     }
 });

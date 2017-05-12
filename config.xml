@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.skyexplorer.quotedesign" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" android-versionCode="2">
-    <name>Graphic Words Design</name>
+<widget id="com.skyexplorer.quotedesign" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" android-versionCode="3">
+    <name>Free Talk</name>
     <description>
-        Graphic Words Design - Quote Design
+        Free Talk - Graphic Words Design - Quote Design
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Sky Explorer
